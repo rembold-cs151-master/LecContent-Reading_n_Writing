@@ -23,6 +23,7 @@ def word2piglatin(word):
     lword = find_largest_contiguous_letters(word)
     if lword is None:
         return word
+    starts_w_caps = lword[0].isupper()
 
     first_vowel_pos = find_first_vowel(lword)
     if first_vowel_pos == 0:
@@ -32,7 +33,10 @@ def word2piglatin(word):
     else:
         new =  lword
     
-    return word.replace(lword, new).lower()
+    candidate = word.replace(lword, new).lower()
+    if starts_w_caps:
+        return candidate.capitalize()
+    return candidate
 
 
 
